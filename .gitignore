@@ -4,7 +4,6 @@ __pycache__
 doc/build
 build/
 dist/
-src/settings.json
 mount.sh
 ping_notify.sh
 PrusaSlicer-2.5.2+linux-x64-GTK3-202303231201.AppImage

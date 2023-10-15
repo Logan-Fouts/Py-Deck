@@ -1,0 +1,240 @@
+{
+    "keybinds-keybind": {
+        "0": "keybind: F5",
+        "1": "keybind: Alt+F2",
+        "2": "keybind: win+Alt+d",
+        "3": "keybind: win+Alt+e",
+        "4": "command: /home/lfouts/Documents/Plexamp/Plexamp-4.8.3.AppImage",
+        "5": "folder: tools",
+        "6": "keybind:",
+        "7": "command:",
+        "8": "command:",
+        "9": "command:",
+        "10": "folder: sys",
+        "11": "command:",
+        "12": "command:",
+        "13": "keybind:",
+        "14": "keybind:",
+        "-2": "keybind: F5"
+    },
+    "keybinds-image": {
+        "0": {
+            "pressed": "image1_pressed.png",
+            "released": "image1_released.png"
+        },
+        "1": {
+            "pressed": "sysrun.png",
+            "released": "sysrun.png"
+        },
+        "2": {
+            "pressed": "father.png",
+            "released": "father.png"
+        },
+        "3": {
+            "pressed": "eraser.png",
+            "released": "eraser.png"
+        },
+        "4": {
+            "pressed": "amp.png",
+            "released": "amp.png"
+        },
+        "5": {
+            "pressed": "folder.png",
+            "released": "folder.png"
+        },
+        "6": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "7": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "8": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "9": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "10": {
+            "pressed": "folder.png",
+            "released": "folder.png"
+        },
+        "11": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "12": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "13": {
+            "released": "blank.png",
+            "pressed": "blank.png"
+        },
+        "14": {
+            "released": "blank.png",
+            "pressed": "blank.png"
+        }
+    },
+    "tools-keybind": {
+        "0": "command: echo '{password}' | sudo -S kcalc",
+        "1": "command: leafpad",
+        "2": "command: pavucontrol",
+        "3": "command: brave-browser https://chat.openai.com/",
+        "4": "command: ./PrusaSlicer-2.5.2+linux-x64-GTK3-202303231201.AppImage",
+        "5": "command: python3 /home/lfouts/python-elgato-streamdeck/src/gui.py",
+        "6": "command:",
+        "7": "command:",
+        "8": "command:",
+        "9": "command:",
+        "10": "command ",
+        "11": "command ",
+        "12": "command ",
+        "13": "command ",
+        "14": "command "
+    },
+    "tools-image": {
+        "0": {
+            "pressed": "calculator.png",
+            "released": "calculator.png"
+        },
+        "1": {
+            "pressed": "gedit.png",
+            "released": "gedit.png"
+        },
+        "2": {
+            "pressed": "sound-mixer.png",
+            "released": "sound-mixer.png"
+        },
+        "3": {
+            "pressed": "AI.png",
+            "released": "AI.png"
+        },
+        "4": {
+            "pressed": "image6_released.png",
+            "released": "image6_released.png"
+        },
+        "5": {
+            "pressed": "pc.png",
+            "released": "pc.png"
+        },
+        "6": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "7": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "8": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "9": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "10": {
+            "pressed": "back.png",
+            "released": "back.png"
+        },
+        "11": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "12": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "13": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "14": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        }
+    },
+    "sys-keybind": {
+        "0": "command: echo '{password}' | sudo -S wg-quick up usa && notify-send 'USA Up'",
+        "1": "command: echo '{password}' | sudo -S wg-quick down usa && notify-send 'USA Down'",
+        "2": "command: sshpass -p '{password}' ssh -tt root@idrac.lablogan.net racadm serveraction powerup && notify-send 'Booting Server'",
+        "3": "command: sshpass -p '{password}' ssh -tt root@idrac.lablogan.net racadm serveraction powerdown && notify-send 'ShuttingDown Server'",
+        "4": "command:",
+        "5": "command:",
+        "6": "command:",
+        "7": "command:",
+        "8": "command:",
+        "9": "command:",
+        "10": "command ",
+        "11": "command ",
+        "12": "command ",
+        "13": "command ",
+        "14": "command "
+    },
+    "sys-image": {
+        "0": {
+            "pressed": "locked.png",
+            "released": "locked.png"
+        },
+        "1": {
+            "pressed": "lock.png",
+            "released": "lock.png"
+        },
+        "2": {
+            "pressed": "play.png",
+            "released": "play.png"
+        },
+        "3": {
+            "pressed": "stop.png",
+            "released": "stop.png"
+        },
+        "4": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "5": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "6": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "7": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "8": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "9": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "10": {
+            "pressed": "back.png",
+            "released": "back.png"
+        },
+        "11": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "12": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "13": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "14": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        }
+    }
+}
