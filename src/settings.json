@@ -7,15 +7,14 @@
         "4": "command: /home/lfouts/Documents/Plexamp/Plexamp-4.8.3.AppImage",
         "5": "folder: tools",
         "6": "keybind:",
-        "7": "command:",
+        "7": "folder: test",
         "8": "command:",
         "9": "command:",
         "10": "folder: sys",
         "11": "command:",
         "12": "command:",
         "13": "keybind:",
-        "14": "keybind:",
-        "-2": "keybind: F5"
+        "14": "keybind:"
     },
     "keybinds-image": {
         "0": {
@@ -47,8 +46,8 @@
             "released": "blank.png"
         },
         "7": {
-            "pressed": "blank.png",
-            "released": "blank.png"
+            "released": "folder.png",
+            "pressed": "folder.png"
         },
         "8": {
             "pressed": "blank.png",
@@ -90,11 +89,11 @@
         "7": "command:",
         "8": "command:",
         "9": "command:",
-        "10": "command ",
-        "11": "command ",
-        "12": "command ",
-        "13": "command ",
-        "14": "command "
+        "10": "command:",
+        "11": "command:",
+        "12": "command:",
+        "13": "command:",
+        "14": "command:"
     },
     "tools-image": {
         "0": {
@@ -191,6 +190,85 @@
         "3": {
             "pressed": "stop.png",
             "released": "stop.png"
+        },
+        "4": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "5": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "6": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "7": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "8": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "9": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "10": {
+            "pressed": "back.png",
+            "released": "back.png"
+        },
+        "11": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "12": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "13": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "14": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        }
+    },
+    "test-keybind": {
+        "0": "keybind:",
+        "1": "keybind:",
+        "2": "keybind:",
+        "3": "keybind:",
+        "4": "keybind:",
+        "5": "keybind:",
+        "6": "command:",
+        "7": "command:",
+        "8": "command:",
+        "9": "command:",
+        "10": "command:",
+        "11": "command:",
+        "12": "command:",
+        "13": "command:",
+        "14": "command:"
+    },
+    "test-image": {
+        "0": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "1": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "2": {
+            "pressed": "blank.png",
+            "released": "blank.png"
+        },
+        "3": {
+            "pressed": "blank.png",
+            "released": "blank.png"
         },
         "4": {
             "pressed": "blank.png",

@@ -3,15 +3,20 @@ import shutil
 import subprocess
 import sys
 import tkinter
-from tkinter import filedialog
+from tkinter import Tk, filedialog
+from tkinter import ttk
 import tkinter.messagebox
 import customtkinter
 import json
 from tkinter import PhotoImage
 from PIL import Image, ImageTk
 
+# Set up the appearance mode and color theme for custom tkinter
 customtkinter.set_appearance_mode("System")
 customtkinter.set_default_color_theme("blue")
+
+# Initialize some global variables
+script_directory = os.path.dirname(os.path.abspath(__file__))
 images = None
 settings = None
 current_folder = "keybinds"
@@ -24,14 +29,12 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.folder_button = None
-
         self.img_label = None
         self.img_label2 = None
 
+        # Load settings and set up the main window
         load_settings()
-
         self.setup_window()
-
         self.left_bar()
         self.gen_buttons(200, 60)
         self.right_bar()
@@ -41,7 +44,6 @@ class App(customtkinter.CTk):
         self.title("Py Deck Editor")
         self.geometry(f"{1100}x{580}")
         self.resizable(False, False)
-
         self.grid_columnconfigure(1, weight=0, pad=10)
         self.grid_columnconfigure((2, 3, 4, 5), weight=0, pad=10)
         self.grid_rowconfigure((0, 1, 2), weight=1)
@@ -102,6 +104,7 @@ class App(customtkinter.CTk):
             self,
             text=f"Current Folder: {current_folder}",
             font=customtkinter.CTkFont(size=18, weight="bold"),
+            text_color="yellow"
         )
         self.currentFolder.place(x=315, y=20)
 
@@ -126,7 +129,9 @@ class App(customtkinter.CTk):
         self.label.place(x=40, y=80)
 
         self.entry = customtkinter.CTkEntry(
-            self.rsidebar_frame, placeholder_text="examples: 'keybind: win+r' or 'command: pwd'", width=260
+            self.rsidebar_frame,
+            placeholder_text="examples: 'keybind: win+r' or 'command: pwd'",
+            width=260,
         )
         self.entry.place(x=120, y=80)
 
@@ -147,7 +152,9 @@ class App(customtkinter.CTk):
         self.save = customtkinter.CTkButton(
             self.rsidebar_frame,
             text="Save",
-            command=lambda: self.update_button_settings(current_button, self.entry.get(), file_path1, file_path2),
+            command=lambda: self.update_button_settings(
+                current_button, self.entry.get(), file_path1, file_path2
+            ),
         )
         self.save.place(x=140, y=540)
 
@@ -289,34 +296,6 @@ class App(customtkinter.CTk):
         )
         self.main_button_15.place(x=x_offset + 400, y=y_offset + 200)
 
-    def update_button_settings(self, button_number, keybind, released_image, pressed_image):
-        global settings
-        if settings:
-            current_folder_key = current_folder + "-keybind"
-            current_folder_image = current_folder + "-image"
-
-            # Update keybind and image settings for the selected button
-            keybinds = settings.get(current_folder_key, {})
-            keybinds[str(button_number - 1)] = keybind
-            
-            images = settings.get(current_folder_image, {})
-            images[str(button_number - 1)] = {
-                "released": released_image,
-                "pressed": pressed_image
-            }
-
-            settings[current_folder_key] = keybinds
-            settings[current_folder_image] = images
-
-            # Write the updated settings back to the JSON file
-            with open("src/settings.json", "w") as json_file:
-                json.dump(settings, json_file, indent=4)
-
-        self.entry = customtkinter.CTkEntry(
-            self.rsidebar_frame, placeholder_text="examples: 'keybind: win+r' or 'command: pwd'", width=260
-        )
-        self.entry.place(x=120, y=80)
-
     def home_click(self):
         global current_folder
         current_folder = "keybinds"
@@ -333,7 +312,7 @@ class App(customtkinter.CTk):
 
         if file_path:
             try:
-                destination = "src/Assets"
+                destination = os.path.join("src", "Assets")
                 shutil.copy(file_path, destination)
 
                 print("Image copied to:", destination)
@@ -350,7 +329,7 @@ class App(customtkinter.CTk):
 
         if file_path:
             try:
-                destination = "src/Assets"
+                destination = os.path.join("src", "Assets")
                 shutil.copy(file_path, destination)
 
                 print("Image copied to:", destination)
@@ -358,19 +337,6 @@ class App(customtkinter.CTk):
                 print("Error copying the image:", str(e))
 
     active_button = -1
-
-    def restart_script(self):
-        current_script = os.path.basename(os.path.join(os.path.abspath(__file__), "hotkeys_terminal.py"))
-
-        try:
-            subprocess.run(["pkill", "-f", current_script])
-        except Exception as e:
-            print(f"Error while killing the process: {e}")
-
-        python = sys.executable
-        script_to_restart = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hotkeys_terminal.py")
-        subprocess.Popen([python, script_to_restart])
-        # self.destroy()
 
     def enter_folder(self, button, keybinds):
         global current_folder
@@ -387,14 +353,11 @@ class App(customtkinter.CTk):
         keybinds = settings.get(current_folder + "-keybind")
         bind = keybinds.get(str(button - 1), None)
         self.currentKey.configure(text="Button " + str(button) + " " + bind)
-
         images = settings.get(current_folder + "-image")
-
         if self.folder_button is not None:
             self.folder_button.destroy()
             self.folder_button = None
 
-        # Add Image
         image = images.get(str(button - 1), None)
         self.currentImage.configure(
             text="Images:   Released                          Pressed"
@@ -407,7 +370,9 @@ class App(customtkinter.CTk):
             self.img_label2.destroy()
             self.img_label2 = None
 
-        img = Image.open("/home/lfouts/python-elgato-streamdeck/src/Assets/" + image.get("released"))
+        img = Image.open(
+            os.path.join(script_directory, "Assets", image.get("released"))
+        )
         max_width, max_height = 100, 100
         width, height = img.size
         if width > max_width or height > max_height:
@@ -419,7 +384,7 @@ class App(customtkinter.CTk):
         self.img_label.image = photo
         self.img_label.place(x=280, y=450)
 
-        img = Image.open("/home/lfouts/python-elgato-streamdeck/src/Assets/" + image.get("pressed"))
+        img = Image.open(os.path.join(script_directory, "Assets", image.get("pressed")))
         max_width, max_height = 100, 100
         width, height = img.size
         if width > max_width or height > max_height:
@@ -438,7 +403,7 @@ class App(customtkinter.CTk):
                 width=70,
                 fg_color="orange",
                 hover_color="green",
-                command=lambda: self.enter_folder(button, keybinds)
+                command=lambda: self.enter_folder(button, keybinds),
             )
             self.folder_button.place(x=200, y=350)
 
@@ -479,12 +444,111 @@ class App(customtkinter.CTk):
     def sidebar_button_event(self):
         self.restart_script()
 
+    def restart_script(self):
+        current_script = os.path.basename(
+            os.path.join(os.path.abspath(__file__), "hotkeys_terminal.py")
+        )
+        try:
+            subprocess.run(["pkill", "-f", current_script])
+        except Exception as e:
+            print(f"Error while killing the process: {e}")
+        python = sys.executable
+        script_to_restart = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "hotkeys_terminal.py"
+        )
+        subprocess.Popen([python, script_to_restart])
+        # self.destroy()
+
+    def update_button_settings(
+        self, button_number, keybind, released_image, pressed_image
+    ):
+        if released_image is None or pressed_image is None or keybind is None:
+            tkinter.messagebox.showinfo("Py Deck Warning", "You Must Enter All Bind Information")
+            return
+
+        script_directory = os.path.dirname(os.path.abspath(__file__))
+        settings_file_path = os.path.join(script_directory, "settings.json")
+        global settings
+        if settings:
+            current_folder_key = current_folder + "-keybind"
+            current_folder_image = current_folder + "-image"
+
+            # Update keybind and image settings for the selected button
+            keybinds = settings.get(current_folder_key, {})
+            keybinds[str(button_number - 1)] = keybind
+
+            images = settings.get(current_folder_image, {})
+            images[str(button_number - 1)] = {
+                "released": released_image,
+                "pressed": pressed_image,
+            }
+
+            settings[current_folder_key] = keybinds
+            settings[current_folder_image] = images
+
+            # Write the updated settings back to the JSON file
+            with open(settings_file_path, "w") as json_file:
+                json.dump(settings, json_file, indent=4)
+        if str(keybind.split(" ")[0][:-1]) == "folder":
+            data = {
+                f"{keybind.split(' ')[1]}-keybind": {
+                    "0": "keybind:",
+                    "1": "keybind:",
+                    "2": "keybind:",
+                    "3": "keybind:",
+                    "4": "keybind:",
+                    "5": "keybind:",
+                    "6": "command:",
+                    "7": "command:",
+                    "8": "command:",
+                    "9": "command:",
+                    "10": "command:",
+                    "11": "command:",
+                    "12": "command:",
+                    "13": "command:",
+                    "14": "command:",
+                },
+                f"{keybind.split(' ')[1]}-image": {
+                    "0": {"pressed": "blank.png", "released": "blank.png"},
+                    "1": {"pressed": "blank.png", "released": "blank.png"},
+                    "2": {"pressed": "blank.png", "released": "blank.png"},
+                    "3": {"pressed": "blank.png", "released": "blank.png"},
+                    "4": {"pressed": "blank.png", "released": "blank.png"},
+                    "5": {"pressed": "blank.png", "released": "blank.png"},
+                    "6": {"pressed": "blank.png", "released": "blank.png"},
+                    "7": {"pressed": "blank.png", "released": "blank.png"},
+                    "8": {"pressed": "blank.png", "released": "blank.png"},
+                    "9": {"pressed": "blank.png", "released": "blank.png"},
+                    "10": {"pressed": "back.png", "released": "back.png"},
+                    "11": {"pressed": "blank.png", "released": "blank.png"},
+                    "12": {"pressed": "blank.png", "released": "blank.png"},
+                    "13": {"pressed": "blank.png", "released": "blank.png"},
+                    "14": {"pressed": "blank.png", "released": "blank.png"},
+                },
+            }
+            with open(settings_file_path, "r") as json_file:
+                existing_data = json.load(json_file)
+            existing_data.update(data)
+            with open(settings_file_path, "w") as json_file:
+                json.dump(existing_data, json_file, indent=4)
+
+        self.entry = customtkinter.CTkEntry(
+            self.rsidebar_frame,
+            placeholder_text="examples: 'keybind: win+r' or 'command: pwd'",
+            width=260,
+        )
+        self.entry.place(x=120, y=80)
+
+        load_settings()
+
 
 def load_settings():
     global keybinds, images, settings
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    settings_file_path = os.path.join(script_directory, "settings.json")
     print("Loading Settings...")
     try:
-        with open("src/settings.json", "r") as json_file:
+        with open(settings_file_path, "r") as json_file:
             settings = json.load(json_file)
             images = settings.get("images", {})
     except Exception as e:
