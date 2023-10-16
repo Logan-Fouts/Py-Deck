@@ -1,6 +1,7 @@
 # Python Elgato Stream Deck GUI
 
 ![Example Deck](src/Assets/streamdeck.jpg)
+![GUI](src/Assets/gui.png)
 
 This is a Front-End implementation of the open source library written for the [Stream Deck](https://www.elgato.com/en/gaming/stream-deck).
 _________________
