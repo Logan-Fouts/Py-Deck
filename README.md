@@ -23,7 +23,7 @@ git clone git@github.com:Logan-Fouts/python-elgato-streamdeck.git
 
 Run The GUI with python to setup the Deck:
 ```
-python3 new_gui.py
+python3 gui.py
 ```
 ## Credits:
 
