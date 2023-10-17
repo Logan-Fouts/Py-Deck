@@ -10,10 +10,13 @@ import pyautogui
 import tkinter as tk
 import subprocess
 import json
+import threading
+import time
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 config_dir = "/home/lfouts/config.json"
 in_folder = False
+last_keypress_time = time.time()
 
 with open(config_dir, "r") as config_file:
     config_data = json.load(config_file)
@@ -126,7 +129,9 @@ def clear_buttons(deck, folder):
 
 
 def key_change_callback(deck, key, state):
-    global keybinds, commands, folders, images, button_to_settings_mapping, button_to_images_mapping, in_folder
+    global keybinds, commands, last_keypress_time, folders, images, button_to_settings_mapping, button_to_images_mapping, in_folder
+    last_keypress_time = time.time()
+    deck.set_brightness(100)
 
     if key == 10 and state and in_folder:
         print("Restarting the script...")
@@ -170,6 +175,15 @@ def key_change_callback(deck, key, state):
             for key in range(deck.key_count()):
                 update_key_image(deck, key, False)
 
+def dim_display_thread():
+    while True:
+        current_time = time.time()
+        if current_time - last_keypress_time >= 300:
+            deck.set_brightness(10)
+            pass
+        time.sleep(100)
+
+
 
 if __name__ == "__main__":
     streamdecks = DeviceManager().enumerate()
@@ -194,6 +208,10 @@ if __name__ == "__main__":
         )
 
         deck.set_brightness(100)
+
+        dim_thread = threading.Thread(target=dim_display_thread)
+        dim_thread.daemon = True
+        dim_thread.start()
 
         for key in range(deck.key_count()):
             update_key_image(deck, key, False)

@@ -7,7 +7,7 @@
         "4": "command: /home/lfouts/Documents/Plexamp/Plexamp-4.8.3.AppImage",
         "5": "folder: tools",
         "6": "keybind:",
-        "7": "folder: test",
+        "7": "keybind:",
         "8": "command:",
         "9": "command:",
         "10": "folder: sys",
@@ -46,8 +46,8 @@
             "released": "blank.png"
         },
         "7": {
-            "released": "folder.png",
-            "pressed": "folder.png"
+            "released": "blank.png",
+            "pressed": "blank.png"
         },
         "8": {
             "pressed": "blank.png",
